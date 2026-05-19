@@ -1,25 +1,27 @@
 using UnityEngine;
+using Zenject;
 
 public class SoundPlayer : ISoundPlayer
 {
     private AudioSource _audioSource;
-    private AudioClip _open;
-    private AudioClip _close;
+    private AudioClip _openClip;
+    private AudioClip _closeClip;
 
-    public SoundPlayer(AudioSource source, AudioClip open, AudioClip close)
+    [Inject]
+    public void Construct(AudioSource audioSource, [Inject(Id = "OpenClip")] AudioClip openClip, [Inject(Id = "CloseClip")] AudioClip closeClip)
     {
-        _audioSource = source;
-        _open = open;
-        _close = close;
+        _audioSource = audioSource;
+        _openClip = openClip;
+        _closeClip = closeClip;
     }
 
     public void PlayOpenSound()
     {
-        _audioSource.PlayOneShot(_open);
+        _audioSource.PlayOneShot(_openClip);
     }
 
     public void PlayCloseSound()
     {
-        _audioSource.PlayOneShot(_close);
+        _audioSource.PlayOneShot(_closeClip);
     }
 }

@@ -1,33 +1,36 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using TMPro;
 
 public class PanelView : MonoBehaviour
 {
     [SerializeField] private Button closeButton;
     [SerializeField] private Button collectButton;
-    [Space]
     [SerializeField] private TextMeshProUGUI scoreText;
+    [Space]
+    [SerializeField] private Image panelImage;
 
-    public void SubscribeClose(Action action)
+    public Image PanelImage => panelImage;
+
+    public void SubscribeClose(UnityAction action)
     {
-        closeButton.onClick.AddListener(() => action());
+        closeButton.onClick.AddListener(action);
     }
 
-    public void UnsubscribeClose(Action action)
+    public void UnsubscribeClose(UnityAction action)
     {
-        closeButton.onClick.RemoveListener(() => action());
+        closeButton.onClick.RemoveListener(action);
     }
 
-    public void SubscribeCollect(Action action)
+    public void SubscribeCollect(UnityAction action)
     {
-        collectButton.onClick.AddListener(() => action());
+        collectButton.onClick.AddListener(action);
     }
 
-    public void UnsubscribeCollect(Action action)
+    public void UnsubscribeCollect(UnityAction action)
     {
-        collectButton.onClick.RemoveListener(() => action());
+        collectButton.onClick.RemoveListener(action);
     }
 
     public void SetScore(int value)
