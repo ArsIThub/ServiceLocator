@@ -5,10 +5,14 @@ public class GameInstaller : MonoInstaller
 {
     [SerializeField] private MainView mainView;
     [SerializeField] private PanelView panelView;
-    [Space]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip openClip;
     [SerializeField] private AudioClip closeClip;
+    [Space]
+    [SerializeField] private PlayerData playerData;
+    [SerializeField] private InputListener inputListener;
+    [SerializeField] Bullet bulletPrefab;
+    [SerializeField] TargetData targetData;
 
     public override void InstallBindings()
     {
@@ -24,6 +28,15 @@ public class GameInstaller : MonoInstaller
         Container.Bind<UiSwitcher>().AsSingle();
         Container.Bind<MainState>().AsSingle();
         Container.Bind<PanelState>().AsSingle();
+
+        Container.Bind<PlayerData>().FromInstance(playerData).AsSingle();
+        Container.Bind<InputListener>().FromInstance(inputListener).AsSingle().NonLazy();
+        Container.Bind<PlayerMovement>().AsSingle();
+        Container.Bind<PlayerShooting>().AsSingle();
+        Container.Bind<Invoker>().AsSingle();
+        Container.Bind<TargetData>().FromInstance(targetData).AsSingle();
+        Container.BindFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(bulletPrefab);
+        Container.Bind<BulletPool>().AsSingle().NonLazy();
 
         Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle().NonLazy();
     }
