@@ -7,6 +7,8 @@ public class DestructibleObstacle : MonoBehaviour
     public void DestroyObstacle()
     {
         destroyedParticles.Play();
+        destroyedParticles.transform.SetParent(null);
+
         gameObject.SetActive(false);
     }
 }

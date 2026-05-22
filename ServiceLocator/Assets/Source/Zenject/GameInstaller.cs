@@ -11,8 +11,8 @@ public class GameInstaller : MonoInstaller
     [Space]
     [SerializeField] private PlayerData playerData;
     [SerializeField] private InputListener inputListener;
-    [SerializeField] Bullet bulletPrefab;
-    [SerializeField] TargetData targetData;
+    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private Target target;
 
     public override void InstallBindings()
     {
@@ -34,7 +34,7 @@ public class GameInstaller : MonoInstaller
         Container.Bind<PlayerMovement>().AsSingle();
         Container.Bind<PlayerShooting>().AsSingle();
         Container.Bind<Invoker>().AsSingle();
-        Container.Bind<TargetData>().FromInstance(targetData).AsSingle();
+        Container.Bind<Target>().FromInstance(target).AsSingle().NonLazy();
         Container.BindFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(bulletPrefab);
         Container.Bind<BulletPool>().AsSingle().NonLazy();
 

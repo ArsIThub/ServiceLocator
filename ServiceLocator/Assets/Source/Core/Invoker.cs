@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class Invoker : MonoBehaviour
+public class Invoker 
 {
     private PlayerMovement _playerMovement;
     private PlayerShooting _playerShooting;
@@ -9,10 +9,10 @@ public class Invoker : MonoBehaviour
     private PlayerData _playerData;
 
     private BulletPool _bulletPool;
-    private TargetData _targetData;
+    private Target _targetData;
 
     [Inject]
-    public void Construct(PlayerMovement movement, PlayerShooting shooting, PlayerData playerData, BulletPool bulletPool, TargetData targetData)
+    public void Construct(PlayerMovement movement, PlayerShooting shooting, PlayerData playerData, BulletPool bulletPool, Target targetData)
     {
         _playerMovement = movement;
         _playerShooting = shooting;

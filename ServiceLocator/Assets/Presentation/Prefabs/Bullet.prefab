@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6424900812755761604}
   - component: {fileID: 9202172946531955725}
   - component: {fileID: 3506225931591676128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8f42173cc7ad04fb4c0540a13f85e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 15
-  lifeTime: 2
+  speed: 20
+  lifeTime: 0.8
   obstacleCheckRadius: 10
   obstacleMask:
     serializedVersion: 2

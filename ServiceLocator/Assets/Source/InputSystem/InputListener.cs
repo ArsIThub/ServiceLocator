@@ -11,7 +11,6 @@ public class InputListener : MonoBehaviour
     [Inject]
     public void Construct(Invoker invoker) 
     {
-        Debug.Log("InputListener Construct");
         _invoker = invoker;
     }
 

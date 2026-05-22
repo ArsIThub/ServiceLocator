@@ -12,11 +12,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] private AudioClip destroyClip;
 
     private BulletPool _pool;
-    private TargetData _target;
+    private Target _target;
 
     private float _timer;
 
-    public void Initialize(TargetData target, BulletPool pool)
+    public void Initialize(Target target, BulletPool pool)
     {
         _target = target;
         _pool = pool;
@@ -49,18 +49,21 @@ public class Bullet : MonoBehaviour
         if (obstacle == null)
         {
             direction = (_target.transform.position - transform.position).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         }
         else
         {
-            direction = transform.right;
+            direction = transform.up;
         }
 
         transform.position += direction * speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.TryGetComponent(out DestructibleObstacle obstacle))
+        if (collision.gameObject.TryGetComponent(out DestructibleObstacle obstacle))
         {
             audioSource.PlayOneShot(destroyClip);
 

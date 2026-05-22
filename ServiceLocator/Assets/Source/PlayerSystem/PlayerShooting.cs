@@ -4,7 +4,7 @@ public class PlayerShooting
 {
     private float _lastShootTime;
 
-    public void Shoot(Transform shootPoint, Bullet bulletPrefab, BulletPool pool, TargetData target, AudioSource audioSource, AudioClip shootClip, float cooldown)
+    public void Shoot(Transform shootPoint, Bullet bulletPrefab, BulletPool pool, Target target, AudioSource audioSource, AudioClip shootClip, float cooldown)
     {
         if (Time.time < _lastShootTime + cooldown)
             return;
